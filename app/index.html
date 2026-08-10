@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NetOpsHub - Infrastructure Monitoring</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">N</div>
+            <div>
+                <h2>NetOpsHub</h2>
+                <span>Infrastructure</span>
+            </div>
+        </div>
+
+        <nav>
+
+            <p class="menu-title">MAIN</p>
+
+            <a href="#" class="nav-item active">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>◉</span>
+                Network Devices
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>▣</span>
+                Servers
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>◈</span>
+                Monitoring
+            </a>
+
+            <p class="menu-title">MANAGEMENT</p>
+
+            <a href="#" class="nav-item">
+                <span>⚠</span>
+                Alerts
+                <b class="badge">3</b>
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>⚙</span>
+                Settings
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="system-status">
+                <div class="status-dot"></div>
+
+                <div>
+                    <strong>System Operational</strong>
+                    <small>All services running</small>
+                </div>
+            </div>
+
+            <div class="profile">
+                <div class="avatar">M</div>
+
+                <div>
+                    <strong>Admin</strong>
+                    <small>Administrator</small>
+                </div>
+
+                <span>⋮</span>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="mobile-brand">
+                NetOpsHub
+            </div>
+
+            <div class="search">
+
+                <span>⌕</span>
+
+                <input
+                    type="text"
+                    placeholder="Search devices, servers..."
+                >
+
+                <kbd>⌘ K</kbd>
+
+            </div>
+
+            <div class="top-actions">
+
+                <button class="icon-btn">
+                    ◐
+                </button>
+
+                <button class="icon-btn notification">
+                    ♧
+                    <span></span>
+                </button>
+
+                <div class="top-avatar">
+                    M
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- CONTENT -->
+
+        <section class="content">
+
+            <div class="welcome">
+
+                <div>
+
+                    <p class="eyebrow">
+                        INFRASTRUCTURE OVERVIEW
+                    </p>
+
+                    <h1>
+                        Welcome back, Admin 👋
+                    </h1>
+
+                    <p>
+                        Here's what's happening with your infrastructure today.
+                    </p>
+
+                </div>
+
+                <button class="refresh">
+                    ↻ Refresh data
+                </button>
+
+            </div>
+
+
+            <!-- STATISTICS -->
+
+            <div class="stats">
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon purple">
+                            ◉
+                        </div>
+
+                        <span class="trend positive">
+                            ↑ 8.2%
+                        </span>
+
+                    </div>
+
+                    <h3>Network Devices</h3>
+
+                    <div class="stat-value">
+                        24
+                    </div>
+
+                    <p>Devices monitored</p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon green">
+                            ✓
+                        </div>
+
+                        <span class="trend positive">
+                            ↑ 4.5%
+                        </span>
+
+                    </div>
+
+                    <h3>Online Devices</h3>
+
+                    <div class="stat-value">
+                        21
+                    </div>
+
+                    <p>Currently operational</p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon orange">
+                            ⚠
+                        </div>
+
+                        <span class="trend warning">
+                            Attention
+                        </span>
+
+                    </div>
+
+                    <h3>Active Alerts</h3>
+
+                    <div class="stat-value">
+                        03
+                    </div>
+
+                    <p>Require attention</p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+
+                        <div class="stat-icon blue">
+                            ◈
+                        </div>
+
+                        <span class="trend positive">
+                            ↑ 2.1%
+                        </span>
+
+                    </div>
+
+                    <h3>Network Health</h3>
+
+                    <div class="stat-value">
+                        92%
+                    </div>
+
+                    <p>Overall infrastructure</p>
+
+                </div>
+
+            </div>
+
+
+            <!-- CHART + ALERTS -->
+
+            <div class="dashboard-grid">
+
+
+                <div class="panel chart-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h2>Network Health</h2>
+
+                            <p>Infrastructure performance over the last 7 days</p>
+
+                        </div>
+
+                        <select>
+
+                            <option>Last 7 days</option>
+                            <option>Last 30 days</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="chart-container">
+
+                        <canvas id="healthChart"></canvas>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel alerts-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h2>Recent Alerts</h2>
+
+                            <p>Latest infrastructure events</p>
+
+                        </div>
+
+                        <a href="#">View all</a>
+
+                    </div>
+
+
+                    <div class="alert">
+
+                        <div class="alert-icon danger">
+                            !
+                        </div>
+
+                        <div class="alert-info">
+
+                            <strong>Database Server</strong>
+
+                            <span>High CPU utilization</span>
+
+                            <small>5 minutes ago</small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="alert">
+
+                        <div class="alert-icon warning">
+                            !
+                        </div>
+
+                        <div class="alert-info">
+
+                            <strong>Router-02</strong>
+
+                            <span>Packet loss detected</span>
+
+                            <small>18 minutes ago</small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="alert">
+
+                        <div class="alert-icon success">
+                            ✓
+                        </div>
+
+                        <div class="alert-info">
+
+                            <strong>Web Server</strong>
+
+                            <span>Service recovered</span>
+
+                            <small>42 minutes ago</small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DEVICES -->
+
+            <div class="panel devices-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>Network Devices</h2>
+
+                        <p>Current status of monitored devices</p>
+
+                    </div>
+
+                    <button class="view-btn">
+                        View devices →
+                    </button>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>DEVICE</th>
+                                <th>IP ADDRESS</th>
+                                <th>TYPE</th>
+                                <th>STATUS</th>
+                                <th>UPTIME</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    <div class="device">
+
+                                        <div class="device-icon router">
+                                            R
+                                        </div>
+
+                                        <div>
+                                            <strong>Router-01</strong>
+                                            <span>Main Gateway</span>
+                                        </div>
+
+                                    </div>
+                                </td>
+
+                                <td>192.168.1.1</td>
+
+                                <td>Router</td>
+
+                                <td>
+                                    <span class="status online">
+                                        <i></i> Online
+                                    </span>
+                                </td>
+
+                                <td>99.98%</td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="device">
+
+                                        <div class="device-icon server">
+                                            S
+                                        </div>
+
+                                        <div>
+                                            <strong>Web-Server-01</strong>
+                                            <span>Production</span>
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td>192.168.1.20</td>
+
+                                <td>Server</td>
+
+                                <td>
+                                    <span class="status online">
+                                        <i></i> Online
+                                    </span>
+                                </td>
+
+                                <td>99.95%</td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="device">
+
+                                        <div class="device-icon switch">
+                                            S
+                                        </div>
+
+                                        <div>
+                                            <strong>Switch-01</strong>
+                                            <span>Core Network</span>
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td>192.168.1.10</td>
+
+                                <td>Switch</td>
+
+                                <td>
+                                    <span class="status online">
+                                        <i></i> Online
+                                    </span>
+                                </td>
+
+                                <td>99.91%</td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="device">
+
+                                        <div class="device-icon database">
+                                            D
+                                        </div>
+
+                                        <div>
+                                            <strong>Database-01</strong>
+                                            <span>PostgreSQL</span>
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td>192.168.1.30</td>
+
+                                <td>Database</td>
+
+                                <td>
+                                    <span class="status offline">
+                                        <i></i> Warning
+                                    </span>
+                                </td>
+
+                                <td>98.72%</td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+
+const ctx = document.getElementById('healthChart');
+
+new Chart(ctx, {
+
+    type: 'line',
+
+    data: {
+
+        labels: [
+            'Mon',
+            'Tue',
+            'Wed',
+            'Thu',
+            'Fri',
+            'Sat',
+            'Sun'
+        ],
+
+        datasets: [{
+
+            label: 'Network Health',
+
+            data: [
+                87,
+                89,
+                91,
+                88,
+                94,
+                92,
+                96
+            ],
+
+            tension: 0.4,
+
+            fill: true,
+
+            backgroundColor: 'rgba(99, 102, 241, 0.08)',
+
+            borderColor: '#6366f1',
+
+            borderWidth: 3,
+
+            pointRadius: 4,
+
+            pointBackgroundColor: '#ffffff',
+
+            pointBorderWidth: 2
+
+        }]
+
+    },
+
+    options: {
+
+        responsive: true,
+
+        maintainAspectRatio: false,
+
+        plugins: {
+
+            legend: {
+                display: false
+            }
+
+        },
+
+        scales: {
+
+            y: {
+
+                min: 70,
+
+                max: 100,
+
+                grid: {
+                    color: '#eef0f4'
+                }
+
+            },
+
+            x: {
+
+                grid: {
+                    display: false
+                }
+
+            }
+
+        }
+
+    }
+
+});
+
+</script>
+<script>
+    // =========================
+    // DARK MODE
+    // =========================
+
+    const themeButton = document.querySelector('.icon-btn');
+
+    themeButton.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
+        } else {
+            localStorage.setItem('theme', 'light');
+        }
+    });
+
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
+
+
+    // =========================
+    // SEARCH DEVICES
+    // =========================
+
+    const searchInput = document.querySelector('.search input');
+
+    searchInput.addEventListener('input', function () {
+
+        const searchValue = this.value.toLowerCase();
+
+        const rows = document.querySelectorAll('tbody tr');
+
+        rows.forEach(row => {
+
+            const text = row.innerText.toLowerCase();
+
+            if (text.includes(searchValue)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+
+        });
+
+    });
+
+
+    // =========================
+    // REFRESH BUTTON
+    // =========================
+
+    const refreshButton = document.querySelector('.refresh');
+
+    refreshButton.addEventListener('click', function () {
+
+        this.innerHTML = '↻ Updating...';
+
+        setTimeout(() => {
+
+            this.innerHTML = '✓ Updated';
+
+            setTimeout(() => {
+                this.innerHTML = '↻ Refresh data';
+            }, 1500);
+
+        }, 800);
+
+    });
+
+
+    // =========================
+    // NAVIGATION
+    // =========================
+
+    const navItems = document.querySelectorAll('.nav-item');
+
+    navItems.forEach(item => {
+
+        item.addEventListener('click', function (event) {
+
+            event.preventDefault();
+
+            navItems.forEach(nav => {
+                nav.classList.remove('active');
+            });
+
+            this.classList.add('active');
+
+        });
+
+    });
+</script>
+</body>
+</html>
