@@ -1,10 +1,25 @@
 from flask import Flask, render_template
+from flask_talisman import Talisman
 
 app = Flask(
     __name__,
     template_folder="app",
     static_folder="app/static",
     static_url_path="/static"
+)
+
+csp = {
+    "default-src": "'self'",
+    "style-src": ["'self'", "'unsafe-inline'"],
+    "script-src": ["'self'"],
+    "img-src": ["'self'", "data:"],
+    "font-src": ["'self'", "data:"],
+}
+
+Talisman(
+    app,
+    content_security_policy=csp,
+    force_https=False
 )
 
 @app.route("/")
