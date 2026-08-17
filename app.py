@@ -8,18 +8,15 @@ app = Flask(
     static_url_path="/static"
 )
 
-csp = {
-    "default-src": "'self'",
-    "style-src": ["'self'", "'unsafe-inline'"],
-    "script-src": ["'self'"],
-    "img-src": ["'self'", "data:"],
-    "font-src": ["'self'", "data:"],
-}
-
 Talisman(
     app,
-    content_security_policy=csp,
-    force_https=False
+    content_security_policy={
+        "default-src": "'self'",
+        "style-src": ["'self'", "'unsafe-inline'"],
+        "script-src": ["'self'"],
+        "img-src": ["'self'", "data:"],
+        "font-src": ["'self'", "data:"]
+    }
 )
 
 @app.route("/")
