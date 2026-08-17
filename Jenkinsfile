@@ -29,21 +29,24 @@ pipeline {
                 '''
             }
         }
-stage('OWASP ZAP Security Scan') {
-    steps {
-        sh '''
-            docker run --rm \
-                --network host \
-                --user root \
-                -v "$WORKSPACE:/zap/wrk/:rw" \
-                ghcr.io/zaproxy/zaproxy:stable \
-                zap-baseline.py \
-                -t http://127.0.0.1:5000 \
-                -r zap-report.html \
-                -J zap-report.json
-        '''
+
+        stage('OWASP ZAP Security Scan') {
+            steps {
+                sh '''
+                    docker run --rm \
+                        --network host \
+                        --user root \
+                        -v "$WORKSPACE:/zap/wrk/:rw" \
+                        ghcr.io/zaproxy/zaproxy:stable \
+                        zap-baseline.py \
+                        -t http://127.0.0.1:5000 \
+                        -r zap-report.html \
+                        -J zap-report.json
+                '''
+            }
+        }
     }
-}
+
     post {
         always {
             archiveArtifacts artifacts: 'zap-report.html,zap-report.json',
