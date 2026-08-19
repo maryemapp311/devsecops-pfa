@@ -1,0 +1,6 @@
+zap-report*.html
+zap-report*.json
+zap-test*.html
+zap-test*.json
+zap.yaml
+jenkinsfile

@@ -10,6 +10,8 @@ app = Flask(
 
 Talisman(
     app,
+    force_https=False,
+    strict_transport_security=False,
     content_security_policy={
         "default-src": "'self'",
         "style-src": ["'self'", "'unsafe-inline'"],
@@ -18,7 +20,6 @@ Talisman(
         "font-src": ["'self'", "data:"]
     }
 )
-
 @app.route("/")
 def home():
     return render_template("index.html")
